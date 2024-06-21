@@ -1,26 +1,36 @@
 import logo from './logo.svg';
 import './App.css';
-import { Navbar } from './components/Navbar';
-import { Filter } from './components/Filter';
-import { Banner } from './components/Banner';
-import { Product } from './components/Product';
-import { ShoesDetails } from './components/ShoesDetails';
-import { createBrowserRouter } from "react-router-dom";
-import { RouterProvider } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import  Navbar  from './components/Navbar';
+import  Banner  from './components/Banner';
+import  Filter  from './components/Filter';
+import  Product  from './components/Product';
+import  ShoesDetails  from './components/ShoesDetails';
+import  ErrorPage  from './error-page';
 
 const router = createBrowserRouter([
-     {
-        path:'/',
-        element: <h1 className="text-6xl font-black text-start py-8 text-black">
-        De jolies chaussures <br /> pour vous !
-    </h1>
-     }
+  {
+    path:'/',
+    element: <div>
+      <Navbar />
+      <Banner />
+      <Filter />
+      <Product />
+    </div> ,
+    errorElement : <ErrorPage />
+  },
+  {
+    path: '/product/:productId',
+    element: <div>
+    <Navbar />
+    <Filter />
+    <ShoesDetails />
+  </div> ,
+  }
 ])
 function App() {
   return (
-    
     <RouterProvider router={router}/>
-  
   );
 }
 
